@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{%  block header %}
+    <img src="{{ asset('img/kapper.jpg') }}"/>
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h3>Klik op de behandeling om de omzet van deze week bij te werken.</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <h3 class="display-5 "> behandeling</h3>
+
+        </div>
+        <div class="col-sm-3">
+            <h3 class="display-5">prijs</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3 class="display-5"> aantal</h3>
+        </div>
+        <div class="col-sm-3">
+            <h3 class="display-5">omzet per behandeling</h3>
+        </div>
+    </div>
+        {% for behandeling in behandelingen %}
+            <div class="row">
+            <div class="col-sm-3">
+               <h5 class="display-5 "> <a href="{{ path('behandeling_opslaan',{'naam':behandeling.naam})}}"> {{ behandeling.naam }}</a></h5>
+
+            </div>
+            <div class="col-sm-3">
+                <h5 class="display-5">&euro; {{ behandeling.prijs }}</h5>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="display-5"> {{ behandeling.aantal }}</h5>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="display-5">&euro; {{ behandeling.aantal * behandeling.prijs}}</h5>
+            </div>
+
+        </div>
+    {% endfor %}
+    <h3>De omzet van week {{ week }} is &euro; {{  omzet }}</h3>
+</div>
+{% endblock %}
